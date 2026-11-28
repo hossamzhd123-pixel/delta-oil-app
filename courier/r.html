@@ -1,0 +1,17 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><meta name="referrer" content="no-referrer"><title>دلتا أويل</title>
+<style>html,body{margin:0;background:#eef5ea;color:#14532d;font:20px Arial,sans-serif}header{background:#14532d;color:#fff;padding:16px;text-align:center;font-weight:bold;font-size:22px}main{max-width:480px;margin:28px auto;padding:0 16px}section{background:#fff;border-radius:16px;padding:28px 20px;box-shadow:0 2px 10px #0002;text-align:center}h1{font-size:24px;margin:0 0 10px}p{margin:8px 0;color:#2f4f3a}.ok{font-size:54px;line-height:1}button{margin-top:16px;background:#14532d;color:#fff;font:bold 18px Arial;padding:13px 24px;border:0;border-radius:10px}</style></head>
+<body><header>دلتا أويل · Delta Oil</header><main><section id="b"><p id="m">جارٍ تسجيل ردك...</p></section></main>
+<script>(function(){
+var U='https://script.google.com/macros/s/AKfycbxQFOs-3DqfDI_YoFfEYD1DyNFch2Vawzub5lybYmOTggoW1Lkp7rvf-VnpUa6cbmzsSg/exec';
+var q=new URLSearchParams(location.search),t=q.get('c')||'',o=q.get('o')||'';
+var L={'1':'سنسلّم لك في الموعد المحدد','2':'سنتواصل معك لتحديد يوم آخر','3':'سنتأخر قليلًا (نصف ساعة إلى ساعة)'};
+var b=document.getElementById('b');
+function show(h){b.innerHTML=h}
+function ok(){show('<div class="ok">&#10003;</div><h1>تم تسجيل ردك، شكرًا</h1><p>'+(L[o]||'')+'</p>')}
+function bad(){show('<h1>هذا الرابط غير صالح</h1><p>لو محتاج مساعدة، كلّم المندوب مباشرة.</p>')}
+function retry(){show('<h1>تعذر تسجيل ردك الآن</h1><p>تأكد من الإنترنت واضغط للمحاولة مرة أخرى.</p><button id="r">إعادة المحاولة</button>');document.getElementById('r').onclick=go}
+function go(){show('<p>جارٍ تسجيل ردك...</p>');
+if(!/^[0-9a-f]{32}[A-Za-z0-9]{16}$/.test(t)||!/^[123]$/.test(o)){bad();return}
+fetch(U,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({cr:1,t:t,o:o})}).then(function(r){return r.json()}).then(function(j){if(j&&j.ok===true)ok();else if(j&&j.e==='bad')bad();else retry()}).catch(retry)}
+go();
+})();</script></body></html>
