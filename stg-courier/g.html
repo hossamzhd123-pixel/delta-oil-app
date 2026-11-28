@@ -3,7 +3,7 @@
 <body><header>Delta Oil | STAGING</header><main><section id="box"><h1 style="font-size:21px;margin:0 0 6px">تسجيل دخول المندوب</h1><p id="st">جارٍ التحميل</p><div id="gb"></div>
 <form id="f" style="display:none" autocomplete="off"><label for="n">الاسم</label><input id="n" maxlength="80" autocomplete="off" required><label for="p">رقم الهاتف</label><input id="p" type="tel" inputmode="tel" maxlength="40" autocomplete="off" required><button id="go" type="submit">دخول</button></form>
 <div id="er" class="err" role="alert"></div><button id="sw" style="display:none;background:#fff;color:#0b6bcb;border:1px solid #0b6bcb">تبديل حساب Google</button></section></main>
-<script>
+<script>(function(){
 var CLIENT='751702780268-etko0ur034s6ie8dm4h72kpl9de9rdam.apps.googleusercontent.com',BACK='https://script.google.com/macros/s/AKfycbzZ4zvyf-3afWjtZSLZM-dGD42xaiEtyOhq1c3-oE4leBa7Oiz3-lFuZQEM6I1RIZ8/exec',TOK='';
 function call(fn,args){return fetch(BACK,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({t:TOK,fn:fn,args:args||[]})}).then(function(r){return r.json()}).then(function(j){if(!j||j.ok!==true){var m=(j&&j.error)||'E';if(m==='token'){try{localStorage.removeItem('gs')}catch(e){}}throw new Error(m)}return j.r})}
 function mk(ok,fail){return new Proxy({},{get:function(t,k){if(k==='withSuccessHandler')return function(h){return mk(h,fail)};if(k==='withFailureHandler')return function(h){return mk(ok,h)};return function(){var a=[].slice.call(arguments);call(k,a).then(function(r){try{if(ok)ok(r)}catch(x){window.__bn&&window.__bn('خطأ في عرض الشاشة: '+String(x&&x.message||x).slice(0,80))}},function(e){if(fail)fail(e);else window.__bn&&window.__bn('تعذر الاتصال ('+String(e&&e.message||e).slice(0,30)+')')})}}})}
@@ -22,4 +22,5 @@ $('sw').onclick=function(){try{localStorage.removeItem('gs');localStorage.remove
 function init(){var t='';try{t=localStorage.getItem('gs')||''}catch(e){}var en='';try{en=localStorage.getItem('ent')||''}catch(e){}if(t&&en==='1'){TOK=t;$('gb').style.display='none';after()}else if(t){TOK=t;showEntry()}
 if(!(window.google&&google.accounts&&google.accounts.id))return;google.accounts.id.initialize({client_id:CLIENT,callback:onCred,cancel_on_tap_outside:false});google.accounts.id.renderButton($('gb'),{theme:'filled_blue',size:'large',text:'signin_with',locale:'ar'});if(!t||en!=='1'&&false){$('st').textContent='سجّل الدخول بحساب Google';google.accounts.id.prompt()}}
 var s=document.createElement('script');s.src='https://accounts.google.com/gsi/client';s.async=true;s.onload=init;s.onerror=function(){$('st').textContent='';bad('تعذر تحميل تسجيل الدخول')};document.head.appendChild(s);
-</script></body></html>
+
+})();</script></body></html>
